@@ -1,0 +1,12 @@
+<products xmlns="http://mapkn3.my/Orders">
+    <product serialNumber="qwer1234">
+        <name>Item</name>
+        <description>Simple item</description>
+        <serialProductionDate>2018-05-03</serialProductionDate>
+    </product>
+    <product serialNumber="1234qwer">
+        <name>Goods</name>
+        <description>Simple goods</description>
+        <serialProductionDate>2015-06-19</serialProductionDate>
+    </product>
+</products>
