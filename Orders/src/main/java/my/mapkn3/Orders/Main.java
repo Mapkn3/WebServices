@@ -1,6 +1,6 @@
 package my.mapkn3.Orders;
 
-import my.mapkn3.Orders.service.ProductServiceImpl;
+import my.mapkn3.Orders.model.Products;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IUnmarshallingContext;
@@ -11,9 +11,9 @@ import java.io.FileReader;
 
 public class Main {
     public static void main(String[] args) throws JiBXException, FileNotFoundException {
-        IBindingFactory bindingFactory = BindingDirectory.getFactory(ProductServiceImpl.Products.class);
+        IBindingFactory bindingFactory = BindingDirectory.getFactory(Products.class);
         IUnmarshallingContext unmarshallingContext = bindingFactory.createUnmarshallingContext();
-        ProductServiceImpl.Products products  = (ProductServiceImpl.Products) unmarshallingContext.unmarshalDocument(new FileReader("data.xml"));
+        Products products  = (Products) unmarshallingContext.unmarshalDocument(new FileReader("D:\\IdeaProjects\\Orders\\src\\main\\java\\my\\mapkn3\\Orders\\data.xml"));
         products.getProducts().forEach(System.out::println);
     }
 }

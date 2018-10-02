@@ -2,6 +2,7 @@ package my.mapkn3.Orders.service;
 
 import my.mapkn3.Orders.dao.PrettyEntityDao;
 import my.mapkn3.Orders.model.Product;
+import my.mapkn3.Orders.model.Products;
 import org.apache.log4j.Logger;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
@@ -75,18 +76,6 @@ public class ProductServiceImpl implements ProductService {
             }
         } catch (JiBXException | FileNotFoundException e) {
             e.printStackTrace();
-        }
-    }
-
-    public class Products {
-        private List<Product> products;
-
-        public List<Product> getProducts() {
-            return products;
-        }
-
-        public void setProducts(List<Product> products) {
-            this.products = products;
         }
     }
 }

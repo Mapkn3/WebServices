@@ -1,0 +1,17 @@
+<binding name="binding" package="my.mapkn3.Orders" xmlns:tns="http://mapkn3.my/Orders/model" trim-whitespace="true">
+    <mapping abstract="true" type-name="tns:Product" class="my.mapkn3.Orders.model.Product">
+        <value style="element" name="name" get-method="getName" set-method="setName"/>
+        <value style="element" name="description" get-method="getDescription" set-method="setDescription"/>
+        <value style="element" name="serialProductionDate" get-method="getSerialProductionDate"
+               set-method="setSerialProductionDate"/>
+        <value style="attribute" name="serialNumber" get-method="getSerialNumber" set-method="setSerialNumber"/>
+    </mapping>
+    <mapping abstract="true" type-name="tns:Products" class="my.mapkn3.Orders.model.Products">
+        <collection get-method="getProducts" set-method="setProducts" create-type="java.util.ArrayList">
+            <structure map-as="tns:Product" name="product"/>
+        </collection>
+    </mapping>
+    <mapping class="my.mapkn3.Orders.model.Products" name="products">
+        <structure map-as="tns:Products"/>
+    </mapping>
+</binding>

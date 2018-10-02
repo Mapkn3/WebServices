@@ -1,11 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+    <h:head></h:head>
+    <h:body>
+        <h:form id="form">
+            <p:dataView var="order" value="#{ordersView.orders}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        gridIcon="fa fa-th-large" listIcon="fa fa-bars">
+
+                <p:dataViewGridItem>
+                    <p:panel header="#{order.id}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="#{order.customerName}" />
+
+                            <p:commandLink update=":form:orderDetail" oncomplete="PF('orderDialog').show()" title="View Detail">
+                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{order}" target="#{ordersView.selectedOrder}" />
+                            </p:commandLink>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataViewGridItem>
+
+                <p:dataViewListItem>
+                    <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Id:" />
+                                <h:outputText value="#{order.id}" style="font-weight: bold"/>
+
+                                <h:outputText value="Customer name:" />
+                                <h:outputText value="#{order.customerName}" style="font-weight: bold"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+
+                        <p:commandLink update=":form:orderDetail" oncomplete="PF('orderDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{order}" target="#{ordersView.selectedOrder}" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:dataViewListItem>
+            </p:dataView>
+
+            <p:dialog header="Order Info" widgetVar="orderDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty ordersView.selectedOrder}" columnClasses="label,value">
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{order.id}" style="font-weight: bold"/>
+
+                        <h:outputText value="Customer name:" />
+                        <h:outputText value="#{order.customerName}" style="font-weight: bold"/>
+
+                        <h:outputText value="Customer address:" />
+                        <h:outputText value="#{order.customerAddress}" style="font-weight: bold"/>
+
+                        <h:outputText value="Total amount:" />
+                        <h:outputText value="#{order.totalAmountOfOrder}" style="font-weight: bold"/>
+
+                        <h:outputText value="Creation date:" />
+                        <h:outputText value="#{order.creationDate}" style="font-weight: bold"/>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+        <style type="text/css">
+            /*demo*/
+            .ui-dataview-list .ui-dataview-row {
+                border-bottom: 1px solid #A8A8A8;
+                padding: 25px 10px;
+            }
+
+            .logo {
+                width: 5%;
+            }
+            .detail {
+                width: 85%;
+                padding-left: 25px;
+            }
+        </style>
+    </h:body>
 </html>

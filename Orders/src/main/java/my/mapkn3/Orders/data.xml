@@ -1,4 +1,4 @@
-<products xmlns="http://mapkn3.my/Orders">
+<products xmlns="http://mapkn3.my/Orders/model">
     <product serialNumber="qwer1234">
         <name>Item</name>
         <description>Simple item</description>

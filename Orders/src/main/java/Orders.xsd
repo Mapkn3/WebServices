@@ -1,0 +1,19 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://mapkn3.my/Orders/model"
+           elementFormDefault="qualified" targetNamespace="http://mapkn3.my/Orders/model">
+    <xs:complexType name="Product">
+        <xs:sequence>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="description"/>
+            <xs:element type="xs:date" name="serialProductionDate"/>
+        </xs:sequence>
+        <xs:attribute use="required" type="xs:string" name="serialNumber"/>
+    </xs:complexType>
+
+    <xs:element type="tns:Products" name="products"/>
+
+    <xs:complexType name="Products">
+        <xs:sequence>
+            <xs:element type="tns:Product" name="product" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
